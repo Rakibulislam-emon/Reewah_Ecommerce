@@ -11,9 +11,9 @@ export default function CategoriesPage() {
         Browse by Category
       </h1>
 
-      <TabGroup>
+      <TabGroup >
         {/* Tabs */}
-        <TabList className=" flex justify-center space-x-4 border-b border-gray-200 mb-8">
+        <TabList className=" flex flex-wrap gap-y-6 justify-center space-x-4 border-b border-gray-200 mb-8">
           {productCollection.map((collection) => (
             <Tab
               key={collection.name}
