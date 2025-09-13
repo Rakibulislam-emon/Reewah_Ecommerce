@@ -1,4 +1,3 @@
-import { earrings, lamps, makeups, nails } from "@/data/productsData";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -6,19 +5,14 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-//
-
-export const getParamsForCollectionData = (params) => {
-  if (params === "earrings") {
-    return earrings;
-  }
-  if (params === "lamp") {
-    return lamps
-  }
-  if (params === "makeup") {
-    return makeups
-  }
-  if (params === "nails") {
-    return nails
-  }
+export const replaceMongoIdInArray = (array) => {
+  const mappedArray = array
+    .map((item) => {
+      return {
+        id: item._id.toString(),
+        ...item,
+      };
+    })
+    .map(({ _id, ...rest }) => rest);
+    return mappedArray
 };

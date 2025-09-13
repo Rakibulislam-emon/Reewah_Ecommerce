@@ -1,19 +1,39 @@
 "use client";
 
-import { productCollection } from "@/data/productsData";
+import Loader from "@/components/Loader";
+import ProductCard from "@/components/ui/ProductCard";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import Image from "next/image";
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function CategoriesPage() {
+  const { data, error } = useSWR("http://localhost:3000/api/products", fetcher);
+
+  if (error) return <div>Failed to load products</div>;
+  if (!data) return <div className="h-screen flex justify-center items-center">
+    <Loader/>
+    </div>;
+
+  // Group products by category
+  const productCollection = Object.values(
+    data.reduce((acc, product) => {
+      if (!acc[product.category])
+        acc[product.category] = { name: product.category, products: [] };
+      acc[product.category].products.push(product);
+      return acc;
+    }, {})
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-bold text-center mb-8">
         Browse by Category
       </h1>
 
-      <TabGroup >
+      <TabGroup>
         {/* Tabs */}
-        <TabList className=" flex flex-wrap gap-y-6 justify-center space-x-4 border-b border-gray-200 mb-8">
+        <TabList className="flex flex-wrap gap-y-6 justify-center space-x-4 border-b border-gray-200 mb-8">
           {productCollection.map((collection) => (
             <Tab
               key={collection.name}
@@ -34,24 +54,13 @@ export default function CategoriesPage() {
         <TabPanels>
           {productCollection.map((collection, idx) => (
             <TabPanel key={idx}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {collection.products.map((item) => (
-                  <div
+                  <ProductCard
                     key={item.id}
-                    className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
-                  >
-                    <div className="relative w-full h-56">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-4 text-center">
-                      <h3 className="text-lg font-semibold">{item.name}</h3>
-                    </div>
-                  </div>
+                    collection={item}
+                    cat={collection.name}
+                  />
                 ))}
               </div>
             </TabPanel>
@@ -61,3 +70,6 @@ export default function CategoriesPage() {
     </div>
   );
 }
+
+
+

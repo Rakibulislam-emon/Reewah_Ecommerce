@@ -1,5 +1,4 @@
-// app/components/HeroLeftContent.jsx
-import { Star, ChevronRight } from "lucide-react";
+import { ChevronRight, Star } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroLeftContent() {
@@ -26,7 +25,8 @@ export default function HeroLeftContent() {
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-stone-600 font-light leading-relaxed max-w-lg">
-          Explore our curated selection of products: Earrings, Lamps, Makeup, Nails, and more – everything you need to shine.
+          Explore our curated selection of products: Earrings, Lamps, Makeup,
+          Nails, and more – everything you need to shine.
         </p>
       </div>
 
@@ -47,19 +47,13 @@ export default function HeroLeftContent() {
       </div>
 
       {/* Call-to-action buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 pt-4">
-        <Link
-          href="/shop"
-          className="group bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-        >
-          <span>Shop All Products</span>
-          <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-        </Link>
+      <div className="flex flex-col sm:flex-row gap-4 pt-4 ">
         <Link
           href="/categories"
-          className="border-2 border-stone-300 hover:border-amber-500 text-stone-700 hover:text-amber-700 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 hover:bg-white/50 backdrop-blur-sm text-center"
+          className="group bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
         >
-          Browse Categories
+          <span>Shop All Products By Categories</span>
+          <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
         </Link>
       </div>
     </div>

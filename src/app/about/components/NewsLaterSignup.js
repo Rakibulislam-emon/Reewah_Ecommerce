@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
+ 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 

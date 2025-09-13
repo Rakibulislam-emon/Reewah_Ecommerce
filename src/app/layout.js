@@ -1,7 +1,11 @@
+import { Footer } from "@/components/Footer";
+import Navbar from "@/components/navbar/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import { Footer } from "@/components/Footer";
+import StoreProvider from "./providers/StoreProvider";
+StoreProvider
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,14 +22,19 @@ export const metadata = {
   description: "Ecommerce website",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased">
-        <Navbar/>
-        {children}
-        <Footer/>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body className="antialiased">
+        <StoreProvider>
+          <Toaster/>
+            <Navbar />
+            {children}
+            <Footer />
+        </StoreProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
