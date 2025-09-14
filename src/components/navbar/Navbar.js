@@ -138,7 +138,7 @@ export default function Navbar() {
                 </nav>
 
                 {/* Divider */}
-                <div className="border-t border-border mb-6" />
+                <div className="border-t border-border mb-6 " />
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
@@ -165,7 +165,7 @@ export default function Navbar() {
                     <div className="relative mr-3">
                       <ShoppingBag className="w-5 h-5" />
                       <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold shadow-md">
-                        0
+                        10
                       </span>
                     </div>
                     <span className="font-medium">Shopping Cart</span>
