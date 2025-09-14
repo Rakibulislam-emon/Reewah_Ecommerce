@@ -8,11 +8,15 @@ import {
 import Link from "next/link";
 import useSWR from "swr";
 
+const url = process.env.NEXT_PUBLIC_API_BASE_URL
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function CollectionDropDown() {
-  const { data } = useSWR("http://localhost:3000/api/categories", fetcher);
+   const { data, error } = useSWR(`${url}/api/categories`, fetcher);
 
+if (error) {
+  return <h1 className="items-center">something wrong try again....</h1>
+}
   return (
     <div className="inline-block rounded-md">
       <DropdownMenu>

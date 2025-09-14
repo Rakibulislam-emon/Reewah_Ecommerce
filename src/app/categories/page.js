@@ -6,9 +6,9 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-
+const url = process.env.NEXT_PUBLIC_API_BASE_URL
 export default function CategoriesPage() {
-  const { data, error } = useSWR("http://localhost:3000/api/products", fetcher);
+  const { data, error } = useSWR(`${url}/api/products`, fetcher);
 
   if (error) return <div>Failed to load products</div>;
   if (!data) return <div className="h-screen flex justify-center items-center">
