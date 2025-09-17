@@ -9,11 +9,14 @@ import {
   ShoppingBag,
   User,
   X,
+  
 } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import CollectionDropDown from "./CollectionDropDown";
+import ShopCart from "./ShopCart";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,12 +83,8 @@ export default function Navbar() {
                 }}
               />
             </SignedIn>
-            <button className="text-foreground hover:text-primary transition-colors relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+          <ShopCart/>
+         
           </div>
 
           {/* Mobile Menu Button */}

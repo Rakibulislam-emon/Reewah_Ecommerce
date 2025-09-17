@@ -29,7 +29,7 @@ const categories = [
   },
   {
     id: "makeup1",
-     path:"/makeup",
+     path:"/makeups",
     name: "Premium Makeup",
     description: "High-quality cosmetics & beauty products",
     image:
@@ -44,7 +44,7 @@ const categories = [
  
   {
     id: "makeup2",
-     path:"/makeup",
+     path:"/makeups",
     name: "Beauty Essentials",
     description: "Everyday makeup & skincare basics",
     image:

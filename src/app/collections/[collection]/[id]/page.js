@@ -1,7 +1,8 @@
-import AddToCart from "@/app/cart/components/AddToCartBtn";
+import AddToCart from "@/app/cart/components/CartActions";
 import { getAllProductsData } from "@/lib/dbQueries";
 import Image from "next/image";
 import Link from "next/link";
+import Breadcrumb from "./components/Breadcrumb";
 
 export default async function ProductDetails({ params }) {
   const { id } = await params;
@@ -26,13 +27,7 @@ export default async function ProductDetails({ params }) {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="mb-6 text-sm text-gray-600">
-          <Link href="/" className="hover:text-blue-600">Home</Link> &gt; 
-          <Link href={`/collections/${product.category}`} className="hover:text-blue-600 capitalize ml-1">
-            {product.category}
-          </Link> &gt; 
-          <span className="ml-1">{product.name}</span>
-        </nav>
+      <Breadcrumb product={product}/>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Product Image */}
@@ -61,9 +56,7 @@ export default async function ProductDetails({ params }) {
             <div className="flex gap-4 mb-6">
               
             <AddToCart product={product}/>
-              <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
-                Add to Wishlist
-              </button>
+              
             </div>
 
             {/* Additional Info */}
