@@ -1,5 +1,5 @@
 import Link from "next/link";
-import OrderForm from "./OrderForm";
+import OrderForm from "./OrderSubmission";
 
 export default function OrderSummary({ getTotalItems }) {
   return (
